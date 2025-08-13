@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import ReactConfetti from 'react-confetti'
-import MyRichTextEditor from '../TextEditor';
 
 const TODOS = [
     {created_at: 'July 2, 25', timestamp: '4 weeks', overall_deadline: '10 Dec, 2025' ,priority: 'e.g intense(red), medium(orange), standard(yellow)', category: 'e.g tech', status: 'e.g WIP, completed, hold', task: 'Add features to the todo list page', subtasks: [
@@ -73,21 +72,7 @@ return (
                 friction={1.01}
             />
         )}
-        <section className="flex justify-between items-center bg-blue-500 p-2">
-            <div>
-                <a href="/" className="text-[12pt]">YangaList</a>
-            </div>
-            <div className="flex justify-center items-center gap-4 text-white font-bold"> 
-                <a href="" className="md:text-[12pt] text-[8pt]">About us</a>
-                <a href="" className="md:text-[12pt] text-[8pt]">Support</a>
-                <a href="" className="md:text-[12pt] text-[8pt]">Statistics</a>
-                <a href="" className="md:text-[12pt] text-[8pt]">Pricing</a>
-                {/* <a href="" className="text-[12pt]">workspace</a> */}
-            </div>
-            <div>
-                <img className='rounded-full md:h-10 md:w-10 h-8 w-8 lg:h-12 lg:w-12 cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSecWFwNqqM7uIjorZo32oIEfywcGtkB5JAsw&s" alt="profile photo" />
-            </div>
-        </section>
+        
         <div className='p-4'>
             <div className='flex justify-between px-2 py-2 border-b'>
                 <h2 className="text-gray- text-[16pt] font-bold">My Task List</h2>
@@ -99,10 +84,16 @@ return (
             </div>
             {
                 addTodoItem 
-                ? <form className='w-full flex justify-center bg-gray-200'>
-                    <div className='grid'>
-                        <input placeholder='Add task' name="mainTodoItem" className='w-[100%] md:w-[90%] lg:w-[90%] border-gray-300 border rounded-md p-1 px-2 text-gray-600' />
-                        <button className="bg-green-700 text-white rounded-md py-0 px-3 " onClick={() => setAddTodoItem(true)}>Create</button>
+                ? <form action={'#'} method='get' className='w-full flex justify-center py-1'>
+                    <div className='grid w-[100%] md:w-[90%] lg:w-[90%] gap-1'>
+                        <div className='flex'>
+                            <input placeholder='Add task' name="mainTodoItem" className='w-[100%] md:w-[90%] lg:w-[90%] border-gray-300 border rounded-md p-1 px-2 text-gray-600' />
+                            <button className="bg-green-700 -ml-[4.35rem] text-white rounded-md py-0 px-3 rounded-l-none" onClick={() => setAddTodoItem(true)}>Create</button>
+                        </div>
+                        <div className='flex ml-5'>
+                            <input placeholder='Add Subtask' name="mainTodoItem" className='w-[100%] md:w-[90%] lg:w-[90%] border-gray-300 border rounded-md p-1 px-2 text-gray-600' />
+                            <button className="bg-gray-700 -ml-[2.6rem] text-white rounded-md py-0 px-4 rounded-l-none" onClick={() => setAddTodoItem(true)}>+</button>
+                        </div>
                     </div>
                     {/* <MyRichTextEditor /> */}
                   </form>
