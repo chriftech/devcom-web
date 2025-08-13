@@ -3,7 +3,7 @@ import Items from "./components/todo/Items";
 import { UserAuth } from "./context/AuthContext";
 import './index.css';
 
-function App() {
+function Root() {
   const { session } = UserAuth()
   return (
     <div>
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;
