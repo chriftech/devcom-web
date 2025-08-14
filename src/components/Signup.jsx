@@ -2,6 +2,7 @@ import React from 'react'
 
 const Signup = () => {
   return (
+    <div className=''>
       <div className="w-full flex justify-center py-10 border items-center">
         <div className='grid gap-3 border rounded-md p-2'>
           <div className='flex justify-center'>
@@ -31,10 +32,11 @@ const Signup = () => {
             <button className='bg-blue-500 text-white w-full py-1 font-semibold'>Signup</button>
           </div>
           <div className='flex gap-2 justify-center'>
-            <p className='text-gray-400'>Already have an account? </p><a href='/signin' className='text-blue-500'>Login</a>
+            <p className='text-gray-400'>Already have an account? </p><a href='/login' className='text-blue-500'>Login</a>
           </div>
         </div>
       </div>
+    </div>
   )
 }
 
