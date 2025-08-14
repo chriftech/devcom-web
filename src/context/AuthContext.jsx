@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import App from "../App";
 
 const AuthContext = createContext()
 
