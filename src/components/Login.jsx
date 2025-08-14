@@ -19,7 +19,7 @@ const Login = () => {
           </div>
           <div className='flex gap-2 justify-between'>
             <a href='/signup' className='text-blue-500 text-[10pt]'>Signup</a>
-            <a href='#/forgot-password' className='text-blue-500 text-[10pt]'>Forgot password?</a>
+            <a href='/password-reset' className='text-blue-500 text-[10pt]'>Forgot password?</a>
           </div>
         </div>
       </div>
