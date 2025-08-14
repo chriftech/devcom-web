@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ReactConfetti from 'react-confetti';
 
-const BaseLayout = ({ component }) => {
+const BaseLayout = ({ component }: {component: React.ReactNode}) => {
   const [showConfetti, setShowConfetti] = useState(true);
 
   useEffect(() => {

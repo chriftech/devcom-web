@@ -5,6 +5,7 @@ import Guide from './components/Guide';
 import Login from './components/Login'
 import PasswordReset from './components/PasswordReset';
 import Pricing from './components/Pricing';
+// import Pricing from './components/Pricing';
 import Signup from './components/Signup'
 import {createBrowserRouter} from 'react-router-dom'
 import BaseLayout from './components/layout/Base';

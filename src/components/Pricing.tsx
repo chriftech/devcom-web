@@ -1,4 +1,5 @@
 import React from 'react'
+// import * as Com from '@/src/components/shadcn/button.tsx'
 
 const Pricing = () => {
   return (
