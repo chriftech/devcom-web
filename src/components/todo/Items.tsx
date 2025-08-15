@@ -63,7 +63,19 @@ const TODOS = [
 ]
 const Items = () => {
     const [todosItems, setTodoItems] = useState(TODOS)
-    const [todoItem, setTodoItem] = useState({
+    type Subtask = {
+        id: number;
+        created_at: string;
+        timestamp: string;
+        deadline: string;
+        priority: string;
+        task: string;
+    };
+
+    const [todoItem, setTodoItem] = useState<{
+        mainTaskID: number;
+        todo: Partial<Subtask>;
+    }>({
         mainTaskID: 0,
         todo: {}
     });
@@ -118,7 +130,7 @@ const Items = () => {
                     {TODOS.map(item => {
                         return (
                             <div>
-                                <div key={item} className="border rounded-md border-t-green-300 border-t-[5px] border-blue-400 shadow-md p-2">
+                                <div className="border rounded-md border-t-green-300 border-t-[5px] border-blue-400 shadow-md p-2">
                                     <div className='flex justify-between '>
                                         <div className='flex gap-1 items-center'>
                                             <input type="checkbox" className='w-4 h-4' />
@@ -136,7 +148,7 @@ const Items = () => {
                                     {
                                         item.subtasks.map(subtask => {
                                             return (
-                                                <div key={subtask} className='hover:bg-gray-200 cursor-text' onClick={() => {
+                                                <div className='hover:bg-gray-200 cursor-text' onClick={() => {
                                                     setTodoItem({ mainTaskID: item.id, todo: subtask })
                                                 }}>
                                                     <div className={'flex gap-1 ml-3 pt-1 items-start'}>
