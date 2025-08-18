@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactConfetti from 'react-confetti'
+import { TaskModal } from '../modal/TaskCreateForm'
+import { Dialog, DialogTrigger } from '../shadcn/dialog'
 
 const TODOS = [
     {
@@ -83,21 +85,19 @@ const Items = () => {
 
     return (
         <React.Fragment>
-
-
-            <div className='p-4'>
-                <div className='flex justify-between px-2 py-2 border-b'>
-                    <h2 className="text-gray- text-[16pt] font-bold">My Task List</h2>
+            <Dialog>
+                <TaskModal />
+                <div className='p-4'>
+                    <div className='flex justify-between px-2 py-2 border-b'>
+                        <h2 className="text-gray- text-[16pt] font-bold">My Task List</h2>
+                        <DialogTrigger asChild>
+                            <button className="bg-green-700 text-white rounded-md py-0 px-3 " onClick={() => setAddTodoItem(true)}>+ Add</button>
+                        </DialogTrigger>
+                    </div>
                     {
                         addTodoItem
-                            ? <button className="bg-gray-50 text-red-600 border rounded-md py-0 px-3 " onClick={() => setAddTodoItem(false)}>Cancel</button>
-                            : <button className="bg-green-700 text-white rounded-md py-0 px-3 " onClick={() => setAddTodoItem(true)}>+ Add</button>
-                    }
-                </div>
-                {
-                    addTodoItem
-                        ? <form action={'#'} method='get' className='w-full flex justify-center py-1'>
-                            <div className='grid w-[100%] md:w-[90%] lg:w-[90%] gap-1'>
+                            ? <form action={'#'} method='get' className='w-full flex justify-center py-1'>
+                                {/* <div className='grid w-[100%] md:w-[90%] lg:w-[90%] gap-1'>
                                 <div className='flex'>
                                     <input placeholder='Add task' name="mainTodoItem" className='w-[100%] md:w-[90%] lg:w-[90%] border-gray-300 border rounded-md p-1 px-2 text-gray-600' />
                                     <button className="bg-green-700 -ml-[4.35rem] text-white rounded-md py-0 px-3 rounded-l-none" onClick={() => setAddTodoItem(true)}>Create</button>
@@ -106,75 +106,76 @@ const Items = () => {
                                     <input placeholder='Add Subtask' name="mainTodoItem" className='w-[100%] md:w-[90%] lg:w-[90%] border-gray-300 border rounded-md p-1 px-2 text-gray-600' />
                                     <button className="bg-gray-700 -ml-[2.6rem] text-white rounded-md py-0 px-4 rounded-l-none" onClick={() => setAddTodoItem(true)}>+</button>
                                 </div>
-                            </div>
-                            {/* <MyRichTextEditor /> */}
-                        </form>
+                            </div> */}
+                                {/* <MyRichTextEditor /> */}
+                            </form>
 
-                        : <div className='flex justify-between px-2 py-2'>
-                            <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
-                                <p className="text-[11pt]">All</p>
+                            : <div className='flex justify-between px-2 py-2'>
+                                <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
+                                    <p className="text-[11pt]">All</p>
+                                </div>
+                                <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
+                                    <p className="text-[11pt]">Completed</p>
+                                </div>
+                                <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
+                                    <p className="text-[11pt]">Deleted</p>
+                                </div>
+                                <div className="text-[11pt]">
+                                    <input type="text" placeholder='Search Item' className='border rounded-md border-gray-200 p-1 w-50' />
+                                </div>
                             </div>
-                            <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
-                                <p className="text-[11pt]">Completed</p>
-                            </div>
-                            <div className='cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-sm'>
-                                <p className="text-[11pt]">Deleted</p>
-                            </div>
-                            <div className="text-[11pt]">
-                                <input type="text" placeholder='Search Item' className='border rounded-md border-gray-200 p-1 w-50' />
-                            </div>
-                        </div>
-                }
-                <hr />
-                <div className='mt-2 md:lg:mx-16 grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-1'>
-                    {TODOS.map(item => {
-                        return (
-                            <div>
-                                <div className="border rounded-md border-t-green-300 border-t-[5px] border-blue-400 shadow-md p-2">
-                                    <div className='flex justify-between '>
-                                        <div className='flex gap-1 items-center'>
-                                            <input type="checkbox" className='w-4 h-4' />
-                                            <p className='text-[14pt] text-gray-700 font-semibold'>{item.task}</p>
-                                        </div>
-                                        <p className='cursor-pointer'>elipsis</p>
-                                        {/* 
+                    }
+                    <hr />
+                    <div className='mt-2 md:lg:mx-16 grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-1'>
+                        {TODOS.map(item => {
+                            return (
+                                <div>
+                                    <div className="border rounded-md border-t-green-300 border-t-[5px] border-blue-400 shadow-md p-2">
+                                        <div className='flex justify-between '>
+                                            <div className='flex gap-1 items-center'>
+                                                <input type="checkbox" className='w-4 h-4' />
+                                                <p className='text-[14pt] text-gray-700 font-semibold'>{item.task}</p>
+                                            </div>
+                                            <p className='cursor-pointer'>elipsis</p>
+                                            {/* 
                                 Share ()
                                 Export/Export as
                                 Import
                                 Edit
                                 Delete
                             */}
-                                    </div>
-                                    {
-                                        item.subtasks.map(subtask => {
-                                            return (
-                                                <div className='hover:bg-gray-200 cursor-text' onClick={() => {
-                                                    setTodoItem({ mainTaskID: item.id, todo: subtask })
-                                                }}>
-                                                    <div className={'flex gap-1 ml-3 pt-1 items-start'}>
-
-                                                        <input type="checkbox" /> {item.id == todoItem.mainTaskID && subtask.task == todoItem.todo.task ? <input onChange={(e) => {
-                                                            setTodoItems({ ...todosItems, })
-                                                        }} type="text" className='border rounded-sm px-2 py-1 w-full border-gray-300' value={subtask.task} /> : <p className='-mt-1'>{subtask.task}</p>}
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                    <div className='flex gap-1 border-t'>
-                                        <div className="flex gap-1 py-1">
-                                            <p className='text-[8pt] font-semibold border-l border-l-gray-500 pl-1'>Start Date: </p><p className='text-[8pt] font-semibold'>{item.overall_deadline}</p>
                                         </div>
-                                        <div className="flex gap-1 py-1">
-                                            <p className='text-[8pt] font-semibold border-l border-l-gray-500 pl-1'>Deadline: </p><p className='text-[8pt] font-semibold'>{item.overall_deadline}</p>
+                                        {
+                                            item.subtasks.map(subtask => {
+                                                return (
+                                                    <div className='hover:bg-gray-200 cursor-text' onClick={() => {
+                                                        setTodoItem({ mainTaskID: item.id, todo: subtask })
+                                                    }}>
+                                                        <div className={'flex gap-1 ml-3 pt-1 items-start'}>
+
+                                                            <input type="checkbox" /> {item.id == todoItem.mainTaskID && subtask.task == todoItem.todo.task ? <input onChange={(e) => {
+                                                                setTodoItems({ ...todosItems, })
+                                                            }} type="text" className='border rounded-sm px-2 py-1 w-full border-gray-300' value={subtask.task} /> : <p className='-mt-1'>{subtask.task}</p>}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        <div className='flex gap-1 border-t'>
+                                            <div className="flex gap-1 py-1">
+                                                <p className='text-[8pt] font-semibold border-l border-l-gray-500 pl-1'>Start Date: </p><p className='text-[8pt] font-semibold'>{item.overall_deadline}</p>
+                                            </div>
+                                            <div className="flex gap-1 py-1">
+                                                <p className='text-[8pt] font-semibold border-l border-l-gray-500 pl-1'>Deadline: </p><p className='text-[8pt] font-semibold'>{item.overall_deadline}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
+            </Dialog>
         </React.Fragment>
 
     )
