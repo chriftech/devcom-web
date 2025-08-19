@@ -3,14 +3,44 @@
 import { motion } from "framer-motion"
 import { Button } from "./shadcn/button"
 import { Card, CardContent, CardHeader, CardTitle } from "./shadcn/card"
-import { CheckCircle2, Smartphone, Cloud, Users, Rocket } from "lucide-react"
+import { CheckCircle2, Smartphone, Cloud, Users, Rocket, ArrowUp } from "lucide-react"
 import { Separator } from "./shadcn/separator"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+
+function BackToTop() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show button after scrolling 300px
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      aria-label="Back to top"
+    >
+      <ArrowUp size={24} />
+    </button>
+  );
+}
 
 export default function LandingPage() {
+
   const navigate = useNavigate();
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="w-full min-h-screen scroll-smooth bg-gradient-to-b from-blue-50 to-white">
       {/* Hero Section */}
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
         <motion.h1
@@ -89,6 +119,7 @@ export default function LandingPage() {
 
       {/* About Section */}
       <motion.div
+        id="about-us"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -295,7 +326,7 @@ export default function LandingPage() {
           </Button>
         </div>
       </motion.section>
+      <BackToTop />
     </div>
-
   )
 }
