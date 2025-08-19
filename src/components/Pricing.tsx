@@ -39,7 +39,7 @@ const Pricing = () => {
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <div className="flex items-end gap-1">
-              <p className="text-3xl font-bold text-gray-900">$9</p>
+              <p className="text-3xl font-bold text-gray-900">$11.99</p>
               <p className="text-gray-600">/month</p>
             </div>
             <ul className="text-sm text-gray-700 space-y-2">
@@ -57,11 +57,15 @@ const Pricing = () => {
         {/* Custom Plan */}
         <Card className="rounded-2xl shadow-md border border-gray-200">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold text-gray-700">Custom</CardTitle>
+            <CardTitle className="text-lg font-semibold text-gray-700">Professional</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="flex items-end gap-1">
+            {/* <div className="flex items-end gap-1">
               <p className="text-3xl font-bold text-gray-900">Let's Talk</p>
+            </div> */}
+            <div className="flex items-end gap-1">
+              <p className="text-3xl font-bold text-gray-900">$34.99</p>
+              <p className="text-gray-600">/month</p>
             </div>
             <ul className="text-sm text-gray-700 space-y-2">
               <li>✔ Everything in Standard</li>

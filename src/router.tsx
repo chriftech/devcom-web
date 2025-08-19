@@ -9,6 +9,7 @@ import Pricing from './components/Pricing';
 import Signup from './components/Signup'
 import {createBrowserRouter} from 'react-router-dom'
 import BaseLayout from './components/layout/Base';
+import LandingPage from './components/Index';
 
 const authRoutes = [
     {path: '/login', element: <BaseLayout component={<Login />} /> },
@@ -21,7 +22,8 @@ const subscriptionRoutes = [
     {path: '/checkout', element: <BaseLayout component={<Pricing />} />},
 ]
 const routes = [
-    {path: '/', element: <BaseLayout component={<Root />} />},
+    {path: '/index', element: <BaseLayout component={<Root />} />},
+    {path: '/', element: <BaseLayout component={<LandingPage />} />},
     {path: '/contact-us', element: <BaseLayout component={<Contact />} />},
     {path: '/about-us', element: <BaseLayout component={<About />} />},
     {path: '/guide', element: <BaseLayout component={<Guide />} />},
