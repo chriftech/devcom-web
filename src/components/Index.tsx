@@ -6,6 +6,7 @@ import { Card, CardContent } from "./shadcn/card"
 import { CheckCircle2, Smartphone, Cloud, Users } from "lucide-react"
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Hero Section */}
