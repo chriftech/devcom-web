@@ -8,7 +8,7 @@ const Pricing = () => {
       {/* Page Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Choose Your Plan</h1>
-        <p className="text-gray-600 mt-2">Simple pricing for your todo workflow</p>
+        <p className="text-gray-600 mt-2">Choose a plan that works for you and your team</p>
       </div>
 
       {/* Pricing Grid */}
@@ -73,8 +73,8 @@ const Pricing = () => {
               <li>✔ Advanced reporting & analytics</li>
               <li>✔ Dedicated support</li>
             </ul>
-            <Button variant="outline" className="w-full mt-3">
-              Contact Sales
+            <Button className="w-full mt-3 bg-blue-500 hover:bg-blue-600 text-white">
+              Upgrade
             </Button>
           </CardContent>
         </Card>
