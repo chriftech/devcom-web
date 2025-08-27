@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { supabase } from "../supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext<{ 
     session: string, 
@@ -9,7 +10,7 @@ const AuthContext = createContext<{
 
 export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     const [session, setSession] = useState<any>(undefined)
-
+    
     // Signup
     const SignUp = async ({ email, password}: {email: string, password: string}) => {
         const { data, error } = await supabase.auth.signUp({
@@ -58,7 +59,9 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
         const { error } = await supabase.auth.signOut();
         if (error) {
             console.error("there was an error: ", error);
+            return {success: false, error}
         }
+        return {success: true}
     }
 
     return (
@@ -66,6 +69,7 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
             session,
             SignUp,
             SignIn,
+            SignOut
         }}>
             {children}
         </AuthContext.Provider>
