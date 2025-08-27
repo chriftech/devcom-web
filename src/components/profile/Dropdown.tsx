@@ -1,3 +1,4 @@
+import { LogOut, Settings, User } from "lucide-react"
 import { Button } from "../shadcn/button"
 import {
     DropdownMenu,
@@ -16,58 +17,41 @@ import {
 
 export default function ProfileDropdownMenu() {
     return (
-        <div className="bg-white">
+        <div className="">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="outline">Open</Button>
+                    <img className='rounded-full md:h-10 md:w-10 h-8 w-8 lg:h-12 lg:w-12 cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSecWFwNqqM7uIjorZo32oIEfywcGtkB5JAsw&s" alt="profile photo" />
+                    {/* <Button variant="outline">Open</Button> */}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56" align="start">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuLabel className="text-center">My Account</DropdownMenuLabel>
                     <DropdownMenuGroup>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                             Profile
-                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                            <DropdownMenuShortcut><User /></DropdownMenuShortcut>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            Billing
+                        <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                            
                             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                             Settings
-                            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                            <DropdownMenuShortcut><Settings /></DropdownMenuShortcut>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                             Keyboard shortcuts
                             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>Team</DropdownMenuItem>
-                        <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                            <DropdownMenuPortal>
-                                <DropdownMenuSubContent>
-                                    <DropdownMenuItem>Email</DropdownMenuItem>
-                                    <DropdownMenuItem>Message</DropdownMenuItem>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem>More...</DropdownMenuItem>
-                                </DropdownMenuSubContent>
-                            </DropdownMenuPortal>
-                        </DropdownMenuSub>
-                        <DropdownMenuItem>
-                            New Team
-                            <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>GitHub</DropdownMenuItem>
-                    <DropdownMenuItem>Support</DropdownMenuItem>
-                    <DropdownMenuItem disabled>API</DropdownMenuItem>
+                    <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">GitHub</DropdownMenuItem>
+                    <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">Support</DropdownMenuItem>
+                    <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" disabled>API</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="ring-white flex justify-between focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                         Log out
-                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                        <DropdownMenuShortcut><LogOut /> </DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
