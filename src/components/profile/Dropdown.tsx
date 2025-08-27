@@ -14,8 +14,14 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "../shadcn/dropdown-menu"
+import { UserAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileDropdownMenu() {
+
+    const {SignOut} = UserAuth();
+    const navigate = useNavigate();
+
     return (
         <div className="">
             <DropdownMenu>
@@ -49,7 +55,12 @@ export default function ProfileDropdownMenu() {
                     <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">Support</DropdownMenuItem>
                     <DropdownMenuItem className="ring-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" disabled>API</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="ring-white flex justify-between focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                    <DropdownMenuItem onClick={async () => {
+                        const result = await SignOut()
+                        if(result.success){
+                            navigate("/login")
+                        }
+                    }} className="ring-white flex justify-between focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
                         Log out
                         <DropdownMenuShortcut><LogOut /> </DropdownMenuShortcut>
                     </DropdownMenuItem>
