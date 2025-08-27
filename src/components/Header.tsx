@@ -1,4 +1,5 @@
 import React from 'react'
+import ProfileDropdownMenu from './profile/Dropdown'
 
 function Header() {
   return (
@@ -14,7 +15,8 @@ function Header() {
           {/* <a href="" className="text-[12pt]">workspace</a> */}
         </div>
         <div>
-          <img className='rounded-full md:h-10 md:w-10 h-8 w-8 lg:h-12 lg:w-12 cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSecWFwNqqM7uIjorZo32oIEfywcGtkB5JAsw&s" alt="profile photo" />
+          {/* <img className='rounded-full md:h-10 md:w-10 h-8 w-8 lg:h-12 lg:w-12 cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSecWFwNqqM7uIjorZo32oIEfywcGtkB5JAsw&s" alt="profile photo" /> */}
+          <ProfileDropdownMenu />
         </div>
       </section>
   )
