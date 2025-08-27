@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Car, Lock } from "lucide-react";
 import { UserAuth } from "../context/AuthContext";
+import { resourceLimits } from "worker_threads";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -12,21 +14,25 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const {session, signUp} = UserAuth();
+  const navigate = useNavigate();
 
-  // const { handleSignup } = useAuth();
+  const {session, SignUp} = UserAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true)
     try {
-      const result = await signUp({email, password})
-      console.log(result)
-      // await handleSignup(firstName, lastName, username, email, password);
-      // window.location.href = "/login";
+      const result = await SignUp({email, password})
+      if (result.success) {
+        navigate('/index');
+      } else {
+        console.log("Error signing up")
+      }
     } catch (err) {
+      console.log(err)
       setError("Something went wrong. Please try again.");
     }
+    setLoading(false);
   };
 
   return (
