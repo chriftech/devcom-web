@@ -14,7 +14,7 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
     const SignUp = async ({ email, password}: {email: string, password: string}) => {
         const { data, error } = await supabase.auth.signUp({
             email: email,
-            password: password
+            password: password,
         })
         if (error) {
             console.log("Error signing up:", error);
@@ -65,7 +65,7 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
         <AuthContext.Provider value={{ 
             session,
             SignUp,
-            // SignIn,
+            SignIn,
         }}>
             {children}
         </AuthContext.Provider>
