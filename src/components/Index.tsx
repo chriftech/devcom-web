@@ -7,6 +7,7 @@ import { CheckCircle2, Smartphone, Cloud, Users, Rocket, ArrowUp } from "lucide-
 import { Separator } from "./shadcn/separator"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { UserAuth } from "../context/AuthContext"
 
 function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -37,8 +38,8 @@ function BackToTop() {
 }
 
 export default function LandingPage() {
-
   const navigate = useNavigate();
+
   return (
     <div className="w-full min-h-screen scroll-smooth bg-gradient-to-b from-blue-50 to-white">
       {/* Hero Section */}

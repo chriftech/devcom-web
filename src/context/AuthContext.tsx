@@ -35,7 +35,6 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
         });
     }, []);
 
-    // Sign in
     const SignIn = async ({ email, password}: {email: string, password: string}) => {
         try {
             const {data, error} = await supabase.auth.signInWithPassword({
@@ -54,7 +53,6 @@ export const AuthContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ chi
             console.error("An error occured: ", error);
         }
     }
-    // Sign Out
     const SignOut = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
