@@ -1,32 +1,40 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Car, Lock } from 'lucide-react';
+import { UserAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    // const { handleLogin } = useAuth();
+    const navigate = useNavigate();
+    const {session, SignIn} = UserAuth();
+    
 
 
-    // const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     setUsername(e.target.value);
-    // }
-    // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     setPassword(e.target.value);
-    // }
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    }
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    }
 
-    // const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     try {
-    //         await handleLogin(username, password);
-    //         // Redirect after login
-    //         window.location.href = "/";
-    //     } catch (err) {
-    //         setError("Invalid credentials");
-    //     }
-    // }
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const result = await SignIn({email, password});
+            // Redirect after login
+            if(result.success){
+                navigate("/");
+            } else {
+                setError("Invalid credentials");
+            }
+        } catch (err) {
+            setError("Invalid credentials");
+        }
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
             <motion.div
@@ -48,7 +56,7 @@ export default function Login() {
                 </motion.div>
 
                 {/* Form */}
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleSubmit}>
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -58,6 +66,8 @@ export default function Login() {
                         <input
                             type="email"
                             required
+                            onChange={handleEmailChange}
+                            value={email}
                             placeholder="you@example.com"
                             className="mt-1 w-full text-base px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
@@ -72,6 +82,8 @@ export default function Login() {
                         <input
                             type="password"
                             required
+                            onChange={handlePasswordChange}
+                            value={password}
                             placeholder="••••••••"
                             className="mt-1 w-full text-base px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
@@ -111,7 +123,7 @@ export default function Login() {
                 >
                     Don’t have an account?{" "}
                     <a href="/signup" className="text-blue-600 hover:underline font-medium">
-                        Sign Up
+                        Login
                     </a>
                 </motion.p>
             </motion.div>
