@@ -8,6 +8,7 @@ function Header() {
           <a href='/' className="text-[15pt] text-white">Logo</a>
         </div>
         <div className="flex justify-center items-center gap-4 text-white font-bold">
+          <a href="/index" className="md:text-[12pt] text-[8pt]">Tasks</a>
           <a href="#about-us" className="md:text-[12pt] text-[8pt]">About us</a>
           <a href="/contact-us" className="md:text-[12pt] text-[8pt]">Support</a>
           <a href="#/" className="md:text-[12pt] text-[8pt]">demo</a>
